@@ -1,0 +1,112 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id" : "getOrg-200-responsepayload-schema.json",
+    "title" : " Version  IMS Final Release JSON Schema Binding (getOrg-200-responsepayload-schema)",
+    "description" : "Author-Colin Smythe (IMS Global);  Version-1.2;  Release Date-10th June 2019. ",
+    "type" : "object",
+    "properties" : {
+        "org" : {
+            "description" : "The instance of the single org for a message payload. There must be a data payload otherwise an error report payload for the record not being located should be returned.",
+            "$ref" : "#/definitions/OrgDType"
+        }
+    },
+    "required" : [ "org" ],
+    "additionalProperties" : false,
+    "definitions" : {
+        "MetadataDType" : {
+            "description" : "The container for the proprietary extensions.",
+            "type" : "object",
+            "properties" : {
+
+            },
+            "patternProperties" : {
+                "^[^:][^:]*:[^:][^:]*$" : {
+                    "oneOf": [{ "type": "string" }, { "type": "array" }, { "type": "boolean" }, { "type": "number" }, { "type": "integer" }, { "type": "object" }]
+                }
+            },
+            "additionalProperties" : true
+        },
+        "OrgDType" : {
+            "description" : "ORG is defined here as a structure for holding organizational information. An ORG might be a school, or it might be a local, statewide, or national entity. ORGs will typically have a parent ORG (up to the national level), and children, allowing a hierarchy to be established. School is defined here as the place where the learning happens. Most commonly this is the data that describes a bricks and mortar building, or, in the case of a virtual school, the virtual school organization. For enrollment and result reporting purposes, little information about this organization is required. A common example of a local organization is a school district.",
+            "type" : "object",
+            "properties" : {
+                "sourcedId" : {
+                    "description" : "Model Primitive Datatype = String. The sourcedId of the object. All objects MUST be identified by a Source Identifier. This is a GUID  System ID for an object. This is the GUID that SYSTEMS will refer to when making API calls, or when needing to identify an object. It is RECOMMENDED that systems are able to map whichever local ids (e.g. database key fields) they use to SourcedId.  The sourcedId of an object is considered an addressable property of an entity and as such will not be treated as Personally Identifiable Information (PII) by certified products.  Therefore, as a part of certification, vendors will be required to declare that they will notify customers via documentation or other formal and documented agreement that sourcedIds should never contain PII in general, but particularly users. This means that if a customer includes a student name in an enrollment.sourcedId, it will not fall to any certified product to protect the enrollment.sourcedId as PII, or even the userSourcedId field in the enrollment record.",
+                    "type" : "string"
+                },
+                "status" : {
+                    "description" : "All objects MUST BE either 'active' or 'tobedeleted'.  Something which is flagged 'tobedeleted' is to be considered safe to delete. Systems can delete records that are flagged as such if they wish, but they are not under any compulsion to do so. In v1.1 the enumeration value of 'inactive' was removed and so for backwards compatibility all such marked objects should be interpreted as 'tobedeleted'.",
+                    "type" : "string",
+                    "enum" : [ "active","tobedeleted" ]
+                },
+                "dateLastModified" : {
+                    "description" : "Model Primitive Datatype = DateTime. All objects MUST be annotated with the dateTime upon which they were last modified. This enables requesters to query for just the latest objects. DateTimes MUST be expressed in W3C profile of [ISO 8601] and MUST contain the UTC timezone.",
+                    "type" : "string",
+                    "format" : "date-time"
+                },
+                "metadata" : {
+                    "description" : "All objects CAN be extended using the Metadata class. This specification is silent on what implementers may consider to be appropriate extensions. The form of the extension is dependent on the binding technology being used.",
+                    "$ref" : "#/definitions/MetadataDType"
+                },
+                "name" : {
+                    "description" : "Model Primitive Datatype = NormalizedString. The name of the organization.",
+                    "type" : "string"
+                },
+                "type" : {
+                    "description" : "The type of organization. This uses a predefined vocabulary.",
+                    "anyOf" : [
+                            {
+                                "type" : "string",
+                                "enum" : [ "department","district","local","national","school","state" ]
+                            },
+                            {
+                                "description" : "Model Primitive Datatype = NormalizedString.",
+                                "type" : "string",
+                                "pattern" : "(ext:)[a-z|A-Z|0-9|.|-|_]+"
+                            }
+                    ]
+                },
+                "identifier" : {
+                    "description" : "Model Primitive Datatype = String. Human readable identifier for this org e.g. NCES ID.",
+                    "type" : "string"
+                },
+                "parent" : {
+                    "description" : "The 'sourcedId' of the parent organization.",
+                    "$ref" : "#/definitions/OrgGUIDRefDType"
+                },
+                "children" : {
+                    "description" : "The 'sourcedIds' for the set of child organizations.",
+                    "type" : "array",
+                    "minItems" : 0,
+                    "items" : {
+                        "$ref" : "#/definitions/OrgGUIDRefDType"
+                    }
+                }
+            },
+            "required" : [ "sourcedId","status","dateLastModified","name","type","identifier" ],
+            "additionalProperties" : false
+        },
+        "OrgGUIDRefDType" : {
+            "description" : "This is the container for reference to a OneRoster 'Org' object that has an allocated sourcedId (GUID).",
+            "type" : "object",
+            "properties" : {
+                "href" : {
+                    "description" : "Model Primitive Datatype = AnyURI. The URI for the type of object being referenced.",
+                    "type" : "string",
+                    "format" : "uri"
+                },
+                "sourcedId" : {
+                    "description" : "Model Primitive Datatype = String. The globally unique identifier of the object being referenced.",
+                    "type" : "string"
+                },
+                "type" : {
+                    "description" : "The type of object being referenced i.e. an 'org'.",
+                    "type" : "string",
+                    "enum" : [ "org" ]
+                }
+            },
+            "required" : [ "href","sourcedId","type" ],
+            "additionalProperties" : false
+        }
+    }
+}

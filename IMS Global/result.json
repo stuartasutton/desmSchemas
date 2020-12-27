@@ -1,0 +1,251 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id" : "getResult-200-responsepayload-schema.json",
+    "title" : " Version  Final Release JSON Schema Binding (getResult-200-responsepayload-schema)",
+    "description" : "Author-Colin Smythe (IMS Global);  Version-1.2;  Release Date-10th June 2019. ",
+    "type" : "object",
+    "properties" : {
+        "result" : {
+            "description" : "The instance of the single result for a message payload. There must be a data payload otherwise an error report payload for the record not being located should be returned.",
+            "$ref" : "#/definitions/ResultDType"
+        }
+    },
+    "required" : [ "result" ],
+    "additionalProperties" : false,
+    "definitions" : {
+        "ClassGUIDRefDType" : {
+            "description" : "This is the container for reference to a OneRoster 'Class' object that has an allocated sourcedId (GUID).",
+            "type" : "object",
+            "properties" : {
+                "href" : {
+                    "description" : "Model Primitive Datatype = AnyURI. The URI for the type of object being referenced.",
+                    "type" : "string",
+                    "format" : "uri"
+                },
+                "sourcedId" : {
+                    "description" : "Model Primitive Datatype = String. The globally unique identifier of the object being referenced.",
+                    "type" : "string"
+                },
+                "type" : {
+                    "description" : "The type of object being referenced i.e. a 'class'.",
+                    "type" : "string",
+                    "enum" : [ "class" ]
+                }
+            },
+            "required" : [ "href","sourcedId","type" ],
+            "additionalProperties" : false
+        },
+        "LearningObjectiveResultsDType" : {
+            "description" : "This is the container for a learning objective identifier. This also allows a mastery score to be aligned with the learning objective.",
+            "type" : "object",
+            "properties" : {
+                "learningObjectiveId" : {
+                    "description" : "Model Primitive Datatype = NormalizedString. The unique identifier for the associated learning objective. If this is a CASE identifier it MUST be a valid UUID.",
+                    "type" : "string"
+                },
+                "score" : {
+                    "description" : "Model Primitive Datatype = Float. The optional mastery score supplied as a numeric value. ",
+                    "type" : "number",
+                    "format" : "float"
+                },
+                "textScore" : {
+                    "description" : "Model Primitive Datatype = NormalizedString. The optional mastery score supplied in a non-numeric form. ",
+                    "type" : "string"
+                }
+            },
+            "required" : [ "learningObjectiveId" ],
+            "additionalProperties" : false
+        },
+        "LearningObjectiveScoreSetDType" : {
+            "description" : "This is the container for the set of learning objective identifiers that are from a single source responsible for creating those identifiers. This also allows a mastery score to be aligned with a learning objective.",
+            "type" : "object",
+            "properties" : {
+                "source" : {
+                    "description" : "The source responsible for creating the learning objective identifiers. The permitted values are from an extensible vocabulary.",
+                    "anyOf" : [
+                            {
+                                "description" : "Model Primitive Datatype = NormalizedString.",
+                                "type" : "string",
+                                "pattern" : "^/(?!case$)(?!unknown$)[a-z0-9]+$"
+                            },
+                            {
+                                "type" : "string",
+                                "enum" : [ "case","unknown" ]
+                            }
+                    ]
+                },
+                "learningObjectiveResults" : {
+                    "description" : "The set of unique identifiers for the associated learning objectives (these may have alignment with a mastery score). If these are CASE identifiers they MUST be valid UUIDs.",
+                    "type" : "array",
+                    "minItems" : 1,
+                    "items" : {
+                        "$ref" : "#/definitions/LearningObjectiveResultsDType"
+                    }
+                }
+            },
+            "required" : [ "source","learningObjectiveResults" ],
+            "additionalProperties" : false
+        },
+        "LineItemGUIDRefDType" : {
+            "description" : "This is the container for reference to a OneRoster 'LineItem' object that has an allocated sourcedId (GUID).",
+            "type" : "object",
+            "properties" : {
+                "href" : {
+                    "description" : "Model Primitive Datatype = AnyURI. The URI for the type of object being referenced.",
+                    "type" : "string",
+                    "format" : "uri"
+                },
+                "sourcedId" : {
+                    "description" : "Model Primitive Datatype = String. The globally unique identifier of the object being referenced.",
+                    "type" : "string"
+                },
+                "type" : {
+                    "description" : "The type of object being referenced i.e. a 'lineItem'.",
+                    "type" : "string",
+                    "enum" : [ "lineItem" ]
+                }
+            },
+            "required" : [ "href","sourcedId","type" ],
+            "additionalProperties" : false
+        },
+        "MetadataDType" : {
+            "description" : "The container for the proprietary extensions.",
+            "type" : "object",
+            "properties" : {
+
+            },
+            "patternProperties" : {
+                "^[^:][^:]*:[^:][^:]*$" : {
+                    "oneOf": [{ "type": "string" }, { "type": "array" }, { "type": "boolean" }, { "type": "number" }, { "type": "integer" }, { "type": "object" }]
+                }
+            },
+            "additionalProperties" : true
+        },
+        "ResultDType" : {
+            "description" : "This is the container for the Result record.  A result consists of the assigned score plus the context for that score.",
+            "type" : "object",
+            "properties" : {
+                "sourcedId" : {
+                    "description" : "Model Primitive Datatype = String. The sourcedId of the object. All objects MUST be identified by a Source Identifier. This is a GUID System ID for an object. This is the GUID that SYSTEMS will refer to when making API calls, or when needing to identify an object. It is RECOMMENDED that systems are able to map whichever local ids (e.g. database key fields) they use to SourcedId. The sourcedId of an object is considered an addressable property of an entity and as such will not be treated as Personally Identifiable Information (PII) by certified products. Therefore, as a part of certification, vendors will be required to declare that they will notify customers via documentation or other formal and documented agreement that sourcedIds should never contain PII in general, but particularly users. This means that if a customer includes a student name in an enrollment.sourcedId, it will not fall to any certified product to protect the enrollment.sourcedId as PII, or even the userSourcedId field in the enrollment record.",
+                    "type" : "string"
+                },
+                "status" : {
+                    "description" : "All objects MUST BE either 'active' or 'tobedeleted'. Something which is flagged 'tobedeleted' is to be considered safe to delete. Systems can delete records that are flagged as such if they wish, but they are not under any compulsion to do so. In v1.1 the enumeration value of 'inactive' was removed and so for backwards compatibility all such marked objects should be interpreted as 'tobedeleted'.",
+                    "type" : "string",
+                    "enum" : [ "active","tobedeleted" ]
+                },
+                "dateLastModified" : {
+                    "description" : "Model Primitive Datatype = DateTime. All objects MUST be annotated with the dateTime upon which they were last modified. This enables requesters to query for just the latest objects. DateTimes MUST be expressed in W3C profile of [ISO 8601] and MUST contain the UTC timezone.",
+                    "type" : "string",
+                    "format" : "date-time"
+                },
+                "metadata" : {
+                    "description" : "All objects CAN be extended using the Metadata class. This specification is silent on what implementers may consider to be appropriate extensions. The form of the extension is dependent on the binding technology being used.",
+                    "$ref" : "#/definitions/MetadataDType"
+                },
+                "lineItem" : {
+                    "description" : "The GUID of the lineItem to which the result is aligned.",
+                    "$ref" : "#/definitions/LineItemGUIDRefDType"
+                },
+                "student" : {
+                    "description" : "The GUID of the student for whom the result is assigned.",
+                    "$ref" : "#/definitions/UserGUIDRefDType"
+                },
+                "class" : {
+                    "description" : "The GUID of the class to which the result is aligned.",
+                    "$ref" : "#/definitions/ClassGUIDRefDType"
+                },
+                "scoreScale" : {
+                    "description" : "The GUID of the scoreScale against which the result is aligned.",
+                    "$ref" : "#/definitions/ScoreScaleGUIDRefDType"
+                },
+                "scoreStatus" : {
+                    "description" : "The status of the score. The value is from an extensible enumerated vocabulary.",
+                    "anyOf" : [
+                            {
+                                "description" : "Model Primitive Datatype = NormalizedString.",
+                                "type" : "string",
+                                "pattern" : "(ext:)[a-z|A-Z|0-9|.|-|_]+"
+                            },
+                            {
+                                "type" : "string",
+                                "enum" : [ "exempt","fully graded","not submitted","partially graded","submitted","late","incomplete","missing","withdrawal","in progress" ]
+                            }
+                    ]
+                },
+                "score" : {
+                    "description" : "Model Primitive Datatype = Float. The score for the result. If a scoreScale is assigned then the value must align with the scale.",
+                    "type" : "number",
+                    "format" : "float"
+                },
+                "textScore" : {
+                    "description" : "Model Primitive Datatype = NormalizedString. An optional non-numeric score value. If a scoreScale is assigned then the value must align with the scale. This attribute was added in OR 1.2.",
+                    "type" : "string"
+                },
+                "scoreDate" : {
+                    "description" : "Model Primitive Datatype = Date. The date at which the score is assigned or there is an update to the result e.g. change in the 'scoreStatus'. The format is YYYY-MM-DD as defined in [ISO 8601].",
+                    "type" : "string",
+                    "format" : "date"
+                },
+                "comment" : {
+                    "description" : "Model Primitive Datatype = String. A human readable comment about the score.",
+                    "type" : "string"
+                },
+                "learningObjectiveSet" : {
+                    "description" : "The set of identifiers for the learning objectives to which this result is aligned. Any number groups of learning objectives can be assigned.",
+                    "type" : "array",
+                    "minItems" : 0,
+                    "items" : {
+                        "$ref" : "#/definitions/LearningObjectiveScoreSetDType"
+                    }
+                }
+            },
+            "required" : [ "sourcedId","status","dateLastModified","lineItem","student","scoreStatus","scoreDate" ],
+            "additionalProperties" : false
+        },
+        "ScoreScaleGUIDRefDType" : {
+            "description" : "This is the container for reference to a OneRoster 'ScoreScale' object that has an allocated sourcedId (GUID).",
+            "type" : "object",
+            "properties" : {
+                "href" : {
+                    "description" : "Model Primitive Datatype = AnyURI. The URI for the type of object being referenced.",
+                    "type" : "string",
+                    "format" : "uri"
+                },
+                "sourcedId" : {
+                    "description" : "Model Primitive Datatype = String. The globally unique identifier of the object being referenced.",
+                    "type" : "string"
+                },
+                "type" : {
+                    "description" : "The type of object being referenced i.e. a 'scoreScale'.",
+                    "type" : "string",
+                    "enum" : [ "scoreScale" ]
+                }
+            },
+            "required" : [ "href","sourcedId","type" ],
+            "additionalProperties" : false
+        },
+        "UserGUIDRefDType" : {
+            "description" : "This is the container for reference to a OneRoster 'User' object that has an allocated sourcedId (GUID).",
+            "type" : "object",
+            "properties" : {
+                "href" : {
+                    "description" : "Model Primitive Datatype = AnyURI. The URI for the type of object being referenced.",
+                    "type" : "string",
+                    "format" : "uri"
+                },
+                "sourcedId" : {
+                    "description" : "Model Primitive Datatype = String. The globally unique identifier of the object being referenced.",
+                    "type" : "string"
+                },
+                "type" : {
+                    "description" : "The type of object being referenced i.e. a 'user'.",
+                    "type" : "string",
+                    "enum" : [ "user" ]
+                }
+            },
+            "required" : [ "href","sourcedId","type" ],
+            "additionalProperties" : false
+        }
+    }
+}

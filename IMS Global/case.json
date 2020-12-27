@@ -1,0 +1,689 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id" : "getCFPackage-200-responsepayload-schema.json",
+    "title" : "Competencies and Academic Standards Exchange (CASE) Service Version 1.0 IMS Final Release JSON Schema Binding (getCFPackage-200-responsepayload-schema)",
+    "description" : "Author-Colin Smythe (IMS Global, UK), Greg Nadeau (PCGUS, USA) and Bob Grogan (Elumen, USA);  Version-Final 2.0;  Release Date-1st August, 2019. ",
+    "type" : "object",
+    "properties" : {
+        "CFDocument" : {
+            "description" : "The root Competency Framework Document. There must be only one CFDocument.",
+            "$ref" : "#/definitions/CFPckgDocumentDType"
+        },
+        "CFItems" : {
+            "description" : "The set of Competency Framework Items that are a components (direct or indirect children) of the root Competency Framework Document. There must be at least one Competency Framework Item.",
+            "type" : "array",
+            "minItems" : 0,
+            "items" : {
+                "$ref" : "#/definitions/CFPckgItemDType"
+            }
+        },
+        "CFAssociations" : {
+            "description" : "The set of Competency Framework Associations. This includes: the set of associations between the component CFItems and other CFItems; the set of associations between the root CFDocument and other CFDocuments.",
+            "type" : "array",
+            "minItems" : 0,
+            "items" : {
+                "$ref" : "#/definitions/CFPckgAssociationDType"
+            }
+        },
+        "CFDefinitions" : {
+            "description" : "The Competency Framework Definitions for the CFDocument and the associated component CFItems. The definitions contains the corresponding set of: CFConcepts, CFSubjects, CFLicenses, CFItemTypes and CFAssociationGroupings.",
+            "$ref" : "#/definitions/CFDefinitionDType"
+        },
+        "CFRubrics" : {
+            "description" : "The set of Competency Framework CFRubrics including the associated CFRubricCriteria and CFRubrcCriterionLevels that are required to complete all of the information relevant to the parent CFRubric. ",
+            "type" : "array",
+            "minItems" : 0,
+            "items" : {
+                "$ref" : "#/definitions/CFRubricDType"
+            }
+        }
+    },
+    "required" : [ "CFDocument" ],
+    "additionalProperties" : false,
+    "definitions" : {
+        "CFAssociationGroupingDType" : {
+            "description" : "This is the container for information about a set of associations that have been labelled as a group (the nature of the group being defined by this container).",
+            "type" : "object",
+            "properties" : {
+                "identifier" : {
+                    "description" : "Model Primitive Datatype = NormalizedString. An unambiguous, synthetic, globally unique identifier for the CFAssociationGrouping. This is the primary way in which the exchange identification is achieved.",
+                    "type" : "string",
+                    "pattern" : "[0-9a-f]{8}-[0-9a-f]{4}-[1-5]{1}[0-9a-f]{3}-[8-9a-b]{1}[0-9a-f]{3}-[0-9a-f]{12}"
+                },
+                "uri" : {
+                    "description" : "Model Primitive Datatype = AnyURI. An unambiguous reference to the CFAssociationGrouping using a network-resolvable URI. ",
+                    "type" : "string",
+                    "format" : "uri"
+                },
+                "title" : {
+                    "description" : "Model Primitive Datatype = NormalizedString. The title of the CFAssociationGrouping.",
+                    "type" : "string"
+                },
+                "description" : {
+                    "description" : "Model Primitive Datatype = String. A human readable description of the CFAssociationGrouping.",
+                    "type" : "string"
+                },
+                "lastChangeDateTime" : {
+                    "description" : "Model Primitive Datatype = DateTime. A system generated timestamp of the most recent change to this record. This conforms to ISO 8601 dateTime definition [ISO 8601].",
+                    "type" : "string",
+                    "format" : "date-time"
+                }
+            },
+            "required" : [ "identifier","uri","title","lastChangeDateTime" ],
+            "additionalProperties" : false
+        },
+        "CFConceptDType" : {
+            "description" : "The container for the definition of a concept which is addressed by the competency framework.",
+            "type" : "object",
+            "properties" : {
+                "identifier" : {
+                    "description" : "Model Primitive Datatype = NormalizedString. An unambiguous, synthetic, globally unique identifier for the CFConcept. This is the primary way in which the exchange identification is achieved.",
+                    "type" : "string",
+                    "pattern" : "[0-9a-f]{8}-[0-9a-f]{4}-[1-5]{1}[0-9a-f]{3}-[8-9a-b]{1}[0-9a-f]{3}-[0-9a-f]{12}"
+                },
+                "uri" : {
+                    "description" : "Model Primitive Datatype = AnyURI. An unambiguous reference to the CFConcept using a network-resolvable URI. ",
+                    "type" : "string",
+                    "format" : "uri"
+                },
+                "title" : {
+                    "description" : "Model Primitive Datatype = NormalizedString. The title of the CFConcept.",
+                    "type" : "string"
+                },
+                "keywords" : {
+                    "description" : "Model Primitive Datatype = NormalizedString. Defined listing of keywords delimited by '|' that the concept encompasses.",
+                    "type" : "string"
+                },
+                "hierarchyCode" : {
+                    "description" : "Model Primitive Datatype = NormalizedString. A human-referenceable code designated by the publisher to identify the item in the hierarchy of the Concepts.",
+                    "type" : "string"
+                },
+                "description" : {
+                    "description" : "Model Primitive Datatype = String. A human readable description of the CFConcept.",
+                    "type" : "string"
+                },
+                "lastChangeDateTime" : {
+                    "description" : "Model Primitive Datatype = DateTime. A system generated timestamp of the most recent change to this record. This conforms to ISO 8601 dateTime definition [ISO 8601].",
+                    "type" : "string",
+                    "format" : "date-time"
+                }
+            },
+            "required" : [ "identifier","uri","title","hierarchyCode","lastChangeDateTime" ],
+            "additionalProperties" : false
+        },
+        "CFDefinitionDType" : {
+            "description" : "The container for the set of definitions used for the competency framework i.e. the set of CFSubjects, CFConcepts, CFItemTypes, CFAssociationGroupings and CFLicenses.",
+            "type" : "object",
+            "properties" : {
+                "CFConcepts" : {
+                    "description" : "The set of concept definitions.",
+                    "type" : "array",
+                    "minItems" : 0,
+                    "items" : {
+                        "$ref" : "#/definitions/CFConceptDType"
+                    }
+                },
+                "CFSubjects" : {
+                    "description" : "The set of subject definitions.",
+                    "type" : "array",
+                    "minItems" : 0,
+                    "items" : {
+                        "$ref" : "#/definitions/CFSubjectDType"
+                    }
+                },
+                "CFLicenses" : {
+                    "description" : "The set of license definitions.",
+                    "type" : "array",
+                    "minItems" : 0,
+                    "items" : {
+                        "$ref" : "#/definitions/CFLicenseDType"
+                    }
+                },
+                "CFItemTypes" : {
+                    "description" : "The set of item type definitions.",
+                    "type" : "array",
+                    "minItems" : 0,
+                    "items" : {
+                        "$ref" : "#/definitions/CFItemTypeDType"
+                    }
+                },
+                "CFAssociationGroupings" : {
+                    "description" : "The set of association grouping definitions.",
+                    "type" : "array",
+                    "minItems" : 0,
+                    "items" : {
+                        "$ref" : "#/definitions/CFAssociationGroupingDType"
+                    }
+                }
+            },
+            "additionalProperties" : false
+        },
+        "CFItemTypeDType" : {
+            "description" : "The container for the ItemType information use within the competency framework.",
+            "type" : "object",
+            "properties" : {
+                "identifier" : {
+                    "description" : "Model Primitive Datatype = NormalizedString. An unambiguous, synthetic, globally unique identifier for the CFItemType. This is the primary way in which the exchange identification is achieved.",
+                    "type" : "string",
+                    "pattern" : "[0-9a-f]{8}-[0-9a-f]{4}-[1-5]{1}[0-9a-f]{3}-[8-9a-b]{1}[0-9a-f]{3}-[0-9a-f]{12}"
+                },
+                "uri" : {
+                    "description" : "Model Primitive Datatype = AnyURI. An unambiguous reference to the CFItemType using a network-resolvable URI. ",
+                    "type" : "string",
+                    "format" : "uri"
+                },
+                "title" : {
+                    "description" : "Model Primitive Datatype = NormalizedString. The title of the CFItemType.",
+                    "type" : "string"
+                },
+                "description" : {
+                    "description" : "Model Primitive Datatype = String. A human readable description of the CFItemType.",
+                    "type" : "string"
+                },
+                "hierarchyCode" : {
+                    "description" : "Model Primitive Datatype = NormalizedString. A human-referenceable code designated by the publisher to identify the item in the hierarchy of ItemTypes.",
+                    "type" : "string"
+                },
+                "typeCode" : {
+                    "description" : "Model Primitive Datatype = NormalizedString. Text code used for type identification.",
+                    "type" : "string"
+                },
+                "lastChangeDateTime" : {
+                    "description" : "Model Primitive Datatype = DateTime. A system generated timestamp of the most recent change to this record. This conforms to ISO 8601 dateTime definition [ISO 8601].",
+                    "type" : "string",
+                    "format" : "date-time"
+                }
+            },
+            "required" : [ "identifier","uri","title","description","hierarchyCode","lastChangeDateTime" ],
+            "additionalProperties" : false
+        },
+        "CFLicenseDType" : {
+            "description" : "The container for the information about a license used within the competency framework.",
+            "type" : "object",
+            "properties" : {
+                "identifier" : {
+                    "description" : "Model Primitive Datatype = NormalizedString. An unambiguous, synthetic, globally unique identifier for the CFLicense. This is the primary way in which the exchange identification is achieved.",
+                    "type" : "string",
+                    "pattern" : "[0-9a-f]{8}-[0-9a-f]{4}-[1-5]{1}[0-9a-f]{3}-[8-9a-b]{1}[0-9a-f]{3}-[0-9a-f]{12}"
+                },
+                "uri" : {
+                    "description" : "Model Primitive Datatype = AnyURI. An unambiguous reference to the CFLicense using a network-resolvable URI. ",
+                    "type" : "string",
+                    "format" : "uri"
+                },
+                "title" : {
+                    "description" : "Model Primitive Datatype = NormalizedString. The title of the CFLicense.",
+                    "type" : "string"
+                },
+                "description" : {
+                    "description" : "Model Primitive Datatype = String. A human readable description of the CFLicense.",
+                    "type" : "string"
+                },
+                "licenseText" : {
+                    "description" : "Model Primitive Datatype = String. Legal license text used by the organization to convey license permissions. This may include the actual license text, or a link to a web location containing the license as a document or as text.",
+                    "type" : "string"
+                },
+                "lastChangeDateTime" : {
+                    "description" : "Model Primitive Datatype = DateTime. A system generated timestamp of the most recent change to this record. This conforms to ISO 8601 dateTime definition [ISO 8601].",
+                    "type" : "string",
+                    "format" : "date-time"
+                }
+            },
+            "required" : [ "identifier","uri","title","licenseText","lastChangeDateTime" ],
+            "additionalProperties" : false
+        },
+        "CFPckgAssociationDType" : {
+            "description" : "This is the container for the data about the relationship between two CFDocuments or between two CFItems within the context of a CFPackage.",
+            "type" : "object",
+            "properties" : {
+                "identifier" : {
+                    "description" : "Model Primitive Datatype = NormalizedString. An unambiguous, synthetic, globally unique identifier for the CFAssociation. This is the primary way in which the exchange identification is achieved.",
+                    "type" : "string",
+                    "pattern" : "[0-9a-f]{8}-[0-9a-f]{4}-[1-5]{1}[0-9a-f]{3}-[8-9a-b]{1}[0-9a-f]{3}-[0-9a-f]{12}"
+                },
+                "associationType" : {
+                    "description" : "The type of association. This uses an enumerated vocabulary.",
+                    "type" : "string",
+                    "enum" : [ "isChildOf","isPeerOf","isPartOf","exactMatchOf","precedes","isRelatedTo","replacedBy","exemplar","hasSkillLevel" ]
+                },
+                "sequenceNumber" : {
+                    "description" : "Model Primitive Datatype = Integer. This is used to order associated objects. Associations can be created through mapping rather than strict hierarchy. As such the presentation of the list cannot be ordered by the objects in the list. They may be different based on the parent being viewed.",
+                    "type" : "integer",
+                    "format" : "int32"
+                },
+                "uri" : {
+                    "description" : "Model Primitive Datatype = AnyURI. An unambiguous reference to the CFAssociation using a network-resolvable URI.",
+                    "type" : "string",
+                    "format" : "uri"
+                },
+                "originNodeURI" : {
+                    "description" : "The resolvable URI for the origin node object.",
+                    "$ref" : "#/definitions/LinkGenURIDType"
+                },
+                "destinationNodeURI" : {
+                    "description" : "The resolvable URI for the destination node object.",
+                    "$ref" : "#/definitions/LinkGenURIDType"
+                },
+                "CFAssociationGroupingURI" : {
+                    "description" : "The network resolvable URI for the link data relationship to a CFAssociationGrouping.",
+                    "$ref" : "#/definitions/LinkURIDType"
+                },
+                "lastChangeDateTime" : {
+                    "description" : "Model Primitive Datatype = DateTime. A system generated timestamp of the most recent change to this record. This conforms to ISO 8601 dateTime definition [ISO 8601].",
+                    "type" : "string",
+                    "format" : "date-time"
+                }
+            },
+            "required" : [ "identifier","associationType","uri","originNodeURI","destinationNodeURI","lastChangeDateTime" ],
+            "additionalProperties" : false
+        },
+        "CFPckgDocumentDType" : {
+            "description" : "The container for the data about a competency framework document (CFDocument) within a CFPackage. A CFDocument is the root for the creation of a learning standard/competency.",
+            "type" : "object",
+            "properties" : {
+                "identifier" : {
+                    "description" : "Model Primitive Datatype = NormalizedString. An unambiguous, synthetic, globally unique identifier for the CFDocument. This is the primary way in which the exchange identification is achieved.",
+                    "type" : "string",
+                    "pattern" : "[0-9a-f]{8}-[0-9a-f]{4}-[1-5]{1}[0-9a-f]{3}-[8-9a-b]{1}[0-9a-f]{3}-[0-9a-f]{12}"
+                },
+                "uri" : {
+                    "description" : "Model Primitive Datatype = AnyURI. An unambiguous reference to the CFDocument using a network-resolvable URI.",
+                    "type" : "string",
+                    "format" : "uri"
+                },
+                "creator" : {
+                    "description" : "Model Primitive Datatype = NormalizedString. The entity with authority that promulgates the competency framework. This is the entity that authorized or created the competency framework. It could be an education agency, higher education institution, professional body. It is the owner of the competency framework.",
+                    "type" : "string"
+                },
+                "title" : {
+                    "description" : "Model Primitive Datatype = NormalizedString. The title of the CFDocument.",
+                    "type" : "string"
+                },
+                "lastChangeDateTime" : {
+                    "description" : "Model Primitive Datatype = DateTime. A system generated timestamp of the most recent change to this record. This conforms to ISO 8601 dateTime definition [ISO 8601].",
+                    "type" : "string",
+                    "format" : "date-time"
+                },
+                "officialSourceURL" : {
+                    "description" : "Model Primitive Datatype = AnyURI. The URL link to the formal citation of the original achievement standards document created for humans.",
+                    "type" : "string",
+                    "format" : "uri"
+                },
+                "publisher" : {
+                    "description" : "Model Primitive Datatype = NormalizedString. The entity responsible for making the learning standards document available.",
+                    "type" : "string"
+                },
+                "description" : {
+                    "description" : "Model Primitive Datatype = NormalizedString. A human readable description of the CFDocument.",
+                    "type" : "string"
+                },
+                "subject" : {
+                    "description" : "Model Primitive Datatype = NormalizedString. The topic or academic subject of the Document (this should use some appropriate K-12, HE, etc. based vocabulary).",
+                    "type" : "array",
+                    "minItems" : 0,
+                    "items" : {
+                        "type" : "string"
+                    }
+                },
+                "subjectURI" : {
+                    "description" : "A set of Link URIs denoting the set of subjects for the document as designated by the promulgating agency. ",
+                    "type" : "array",
+                    "minItems" : 0,
+                    "items" : {
+                        "$ref" : "#/definitions/LinkURIDType"
+                    }
+                },
+                "language" : {
+                    "description" : "Model Primitive Datatype = Language. The default language of the text used for the content in the learning standard document (use ISO 639-2 [ISO 639]).",
+                    "type" : "string"
+                },
+                "version" : {
+                    "description" : "Model Primitive Datatype = NormalizedString. Defines the revision of the document (the nature of this versoning is an implementation issue).",
+                    "type" : "string"
+                },
+                "adoptionStatus" : {
+                    "description" : "Model Primitive Datatype = NormalizedString. The publication status of the document.",
+                    "type" : "string"
+                },
+                "statusStartDate" : {
+                    "description" : "Model Primitive Datatype = Date. The date the CFDocument status started.",
+                    "type" : "string",
+                    "format" : "date"
+                },
+                "statusEndDate" : {
+                    "description" : "Model Primitive Datatype = Date. The date the CFDocument status ended or changed to another status.",
+                    "type" : "string",
+                    "format" : "date"
+                },
+                "licenseURI" : {
+                    "description" : "A link to a legal document controlling permission to do something with the standards document.",
+                    "$ref" : "#/definitions/LinkURIDType"
+                },
+                "notes" : {
+                    "description" : "Model Primitive Datatype = String. Any text used to comment on the published CFDocument.",
+                    "type" : "string"
+                }
+            },
+            "required" : [ "identifier","uri","creator","title","lastChangeDateTime" ],
+            "additionalProperties" : false
+        },
+        "CFPckgItemDType" : {
+            "description" : "This is the container for the CFItem data within the context of a CFPackage. This is the content that either describes a specific competency (learning objective) or describes a grouping of competencies within the taxonomy of a Competency Framework Document. ",
+            "type" : "object",
+            "properties" : {
+                "identifier" : {
+                    "description" : "Model Primitive Datatype = NormalizedString. An unambiguous, synthetic, globally unique identifier for the CFItem. This is the primary way in which the exchange identification is achieved.",
+                    "type" : "string",
+                    "pattern" : "[0-9a-f]{8}-[0-9a-f]{4}-[1-5]{1}[0-9a-f]{3}-[8-9a-b]{1}[0-9a-f]{3}-[0-9a-f]{12}"
+                },
+                "fullStatement" : {
+                    "description" : "Model Primitive Datatype = NormalizedString. The text of the statement. The textual content that either describes a specific competency or describes a less granular group of competencies within the taxonomy of the standards document. ",
+                    "type" : "string"
+                },
+                "alternativeLabel" : {
+                    "description" : "Model Primitive Datatype = NormalizedString. An alternate 'term' for Competency.  Some institutions may want to render their achievements as outcomes, or objectives, etc.  Semantically they are the same as Competencies, but diversity of terms is used.  This allows for the flexibility for the institution to define their own term for 'Competency' and not being locked into it.  ",
+                    "type" : "string"
+                },
+                "CFItemType" : {
+                    "description" : "Model Primitive Datatype = NormalizedString. The textual label identifying the class of the statement as designated by the promulgating body.",
+                    "type" : "string"
+                },
+                "uri" : {
+                    "description" : "Model Primitive Datatype = AnyURI. An unambiguous reference to the CFItem using a network-resolvable URI.",
+                    "type" : "string",
+                    "format" : "uri"
+                },
+                "humanCodingScheme" : {
+                    "description" : "Model Primitive Datatype = NormalizedString. A human-referenceable code designated by the publisher to identify the item among learning standard items.",
+                    "type" : "string"
+                },
+                "listEnumeration" : {
+                    "description" : "Model Primitive Datatype = NormalizedString. A set of one or more alphanumeric characters and/or symbol denoting the positioning of the statement being described in a sequential listing of statements.",
+                    "type" : "string"
+                },
+                "abbreviatedStatement" : {
+                    "description" : "Model Primitive Datatype = NormalizedString. An abbreviated version of the Full Statement.",
+                    "type" : "string"
+                },
+                "conceptKeywords" : {
+                    "description" : "Model Primitive Datatype = NormalizedString. The significant topicality of the CFItem using free-text keywords and phrases.",
+                    "type" : "array",
+                    "minItems" : 0,
+                    "items" : {
+                        "type" : "string"
+                    }
+                },
+                "conceptKeywordsURI" : {
+                    "description" : "The significant topicality of the CFItem using a controlled vocabulary maintained as linked data. ",
+                    "$ref" : "#/definitions/LinkURIDType"
+                },
+                "notes" : {
+                    "description" : "Model Primitive Datatype = String. Information about the derivation of a CFItem statement.",
+                    "type" : "string"
+                },
+                "language" : {
+                    "description" : "Model Primitive Datatype = Language. The default language of the text used for the content in the learning standard document (use ISO 639-2 [ISO 639]).",
+                    "type" : "string"
+                },
+                "educationLevel" : {
+                    "description" : "Model Primitive Datatype = NormalizedString. The education level, grade level or primary instructional level at which a CFItem is intended",
+                    "type" : "array",
+                    "minItems" : 0,
+                    "items" : {
+                        "type" : "string"
+                    }
+                },
+                "CFItemTypeURI" : {
+                    "description" : "This is the linked data location for the CFItemType.",
+                    "$ref" : "#/definitions/LinkURIDType"
+                },
+                "licenseURI" : {
+                    "description" : "A link to a legal document controlling permission to do something with the CFItem.",
+                    "$ref" : "#/definitions/LinkURIDType"
+                },
+                "statusStartDate" : {
+                    "description" : "Model Primitive Datatype = Date. The date the CFItem status started.",
+                    "type" : "string",
+                    "format" : "date"
+                },
+                "statusEndDate" : {
+                    "description" : "Model Primitive Datatype = Date. The date the CFItem status ended or changed to another status.",
+                    "type" : "string",
+                    "format" : "date"
+                },
+                "lastChangeDateTime" : {
+                    "description" : "Model Primitive Datatype = DateTime. A system generated timestamp of the most recent change to this record. This conforms to ISO 8601 dateTime definition [ISO 8601].",
+                    "type" : "string",
+                    "format" : "date-time"
+                }
+            },
+            "required" : [ "identifier","fullStatement","uri","lastChangeDateTime" ],
+            "additionalProperties" : false
+        },
+        "CFRubricDType" : {
+            "description" : "The container for the definition of a rubric which is addressed by the competency framework. This includes the set of associated CFRubricCriteria and CFRubricCriterionLevels.",
+            "type" : "object",
+            "properties" : {
+                "identifier" : {
+                    "description" : "Model Primitive Datatype = NormalizedString. An unambiguous, synthetic, globally unique identifier for the CFRubric. This is the primary way in which the exchange identification is achieved.",
+                    "type" : "string",
+                    "pattern" : "[0-9a-f]{8}-[0-9a-f]{4}-[1-5]{1}[0-9a-f]{3}-[8-9a-b]{1}[0-9a-f]{3}-[0-9a-f]{12}"
+                },
+                "uri" : {
+                    "description" : "Model Primitive Datatype = AnyURI. An unambiguous reference to the CFRubric using a network-resolvable URI.",
+                    "type" : "string",
+                    "format" : "uri"
+                },
+                "title" : {
+                    "description" : "Model Primitive Datatype = NormalizedString. The title of the CFRubric.",
+                    "type" : "string"
+                },
+                "description" : {
+                    "description" : "Model Primitive Datatype = NormalizedString. A human readable description of the CFRubric.",
+                    "type" : "string"
+                },
+                "lastChangeDateTime" : {
+                    "description" : "Model Primitive Datatype = DateTime. A system generated timestamp of the most recent change to this record. This conforms to ISO 8601 dateTime definition [ISO 8601].",
+                    "type" : "string",
+                    "format" : "date-time"
+                },
+                "CFRubricCriteria" : {
+                    "description" : "The set of CFRubricCriterion that are required to complete the definition of the parent CFRubric.",
+                    "type" : "array",
+                    "minItems" : 0,
+                    "items" : {
+                        "$ref" : "#/definitions/CFRubricCriterionDType"
+                    }
+                }
+            },
+            "required" : [ "identifier","uri","lastChangeDateTime" ],
+            "additionalProperties" : false
+        },
+        "CFRubricCriterionDType" : {
+            "description" : "The container for the definition of a rubric criterion which is addressed by the competency framework.",
+            "type" : "object",
+            "properties" : {
+                "identifier" : {
+                    "description" : "Model Primitive Datatype = NormalizedString. An unambiguous, synthetic, globally unique identifier for the CFRubricCriterion. This is the primary way in which the exchange identification is achieved.",
+                    "type" : "string",
+                    "pattern" : "[0-9a-f]{8}-[0-9a-f]{4}-[1-5]{1}[0-9a-f]{3}-[8-9a-b]{1}[0-9a-f]{3}-[0-9a-f]{12}"
+                },
+                "uri" : {
+                    "description" : "Model Primitive Datatype = AnyURI. An unambiguous reference to the CFRubricCriterion using a network-resolvable URI.",
+                    "type" : "string",
+                    "format" : "uri"
+                },
+                "category" : {
+                    "description" : "Model Primitive Datatype = NormalizedString. A textual label for category by which CFRubricCriterion may be grouped.",
+                    "type" : "string"
+                },
+                "description" : {
+                    "description" : "Model Primitive Datatype = String. A human readable description of the CFRubricCriterion.",
+                    "type" : "string"
+                },
+                "CFItemURI" : {
+                    "description" : "An unambiguous reference to the CFItem to which this rubric criterion is associated using a network-resolvable URI and link data.",
+                    "$ref" : "#/definitions/LinkURIDType"
+                },
+                "weight" : {
+                    "description" : "Model Primitive Datatype = Float. A numeric weight assigned to this CFRubricCriterion, used for scored rubrics.",
+                    "type" : "number",
+                    "format" : "float"
+                },
+                "position" : {
+                    "description" : "Model Primitive Datatype = Integer. A numeric value representing this criterion's position in the criteria list for this CFRubric.",
+                    "type" : "integer",
+                    "format" : "int32"
+                },
+                "rubricId" : {
+                    "description" : "Model Primitive Datatype = NormalizedString. The UUID for the parent CFRubric. This is included for forwards compatibility to enable access to the CFRubricCriterion without requiring embedding within the CFRubric itself.",
+                    "type" : "string",
+                    "pattern" : "[0-9a-f]{8}-[0-9a-f]{4}-[1-5]{1}[0-9a-f]{3}-[8-9a-b]{1}[0-9a-f]{3}-[0-9a-f]{12}"
+                },
+                "lastChangeDateTime" : {
+                    "description" : "Model Primitive Datatype = DateTime. A system generated timestamp of the most recent change to this record. This conforms to ISO 8601 dateTime definition [ISO 8601].",
+                    "type" : "string",
+                    "format" : "date-time"
+                },
+                "CFRubricCriterionLevels" : {
+                    "description" : "The set of CFRubricCriterionLevels that are required to complete the definition of the parent CFRubricCriterion.",
+                    "type" : "array",
+                    "minItems" : 0,
+                    "items" : {
+                        "$ref" : "#/definitions/CFRubricCriterionLevelDType"
+                    }
+                }
+            },
+            "required" : [ "identifier","uri","lastChangeDateTime" ],
+            "additionalProperties" : false
+        },
+        "CFRubricCriterionLevelDType" : {
+            "description" : "The container for the definition of a criterion level which is addressed by the competency framework.",
+            "type" : "object",
+            "properties" : {
+                "identifier" : {
+                    "description" : "Model Primitive Datatype = NormalizedString. An unambiguous, synthetic, globally unique identifier for the CFRubricCriterionLevel. This is the primary way in which the exchange identification is achieved.",
+                    "type" : "string",
+                    "pattern" : "[0-9a-f]{8}-[0-9a-f]{4}-[1-5]{1}[0-9a-f]{3}-[8-9a-b]{1}[0-9a-f]{3}-[0-9a-f]{12}"
+                },
+                "uri" : {
+                    "description" : "Model Primitive Datatype = AnyURI. An unambiguous reference to the CFRubricCriterionLevel using a network-resolvable URI.",
+                    "type" : "string",
+                    "format" : "uri"
+                },
+                "description" : {
+                    "description" : "Model Primitive Datatype = String. A human readable description of the CFRubricCriterionLevel.",
+                    "type" : "string"
+                },
+                "quality" : {
+                    "description" : "Model Primitive Datatype = NormalizedString. A qualitative description of this degree of achievement used for column headers or row labels in tabular rubrics.",
+                    "type" : "string"
+                },
+                "score" : {
+                    "description" : "Model Primitive Datatype = Float. The points awarded for achieving this level.",
+                    "type" : "number",
+                    "format" : "float"
+                },
+                "feedback" : {
+                    "description" : "Model Primitive Datatype = String. Pre-defined feedback text to be relayed to the person or organization being evaluated. This may include guidance and suggestions for improvement or development.",
+                    "type" : "string"
+                },
+                "position" : {
+                    "description" : "Model Primitive Datatype = Integer. A numeric value representing the level's position in the list of levels defined for the CFRubricCriterion.",
+                    "type" : "integer",
+                    "format" : "int32"
+                },
+                "rubricCriterionId" : {
+                    "description" : "Model Primitive Datatype = NormalizedString. The UUID for the parent CFRubricCriterion. This is included for forwards compatibility to enable access to the CFRubricCriterionLevel without requiring embedding within the CFRubricCriterion itself.",
+                    "type" : "string",
+                    "pattern" : "[0-9a-f]{8}-[0-9a-f]{4}-[1-5]{1}[0-9a-f]{3}-[8-9a-b]{1}[0-9a-f]{3}-[0-9a-f]{12}"
+                },
+                "lastChangeDateTime" : {
+                    "description" : "Model Primitive Datatype = DateTime. A system generated timestamp of the most recent change to this record. This conforms to ISO 8601 dateTime definition [ISO 8601].",
+                    "type" : "string",
+                    "format" : "date-time"
+                }
+            },
+            "required" : [ "identifier","uri","lastChangeDateTime" ],
+            "additionalProperties" : false
+        },
+        "CFSubjectDType" : {
+            "description" : "The container for the definition of a topic or academic subject which is addressed by the competency framework.",
+            "type" : "object",
+            "properties" : {
+                "identifier" : {
+                    "description" : "Model Primitive Datatype = NormalizedString. An unambiguous, synthetic, globally unique identifier for the CFSubject. This is the primary way in which the exchange identification is achieved.",
+                    "type" : "string",
+                    "pattern" : "[0-9a-f]{8}-[0-9a-f]{4}-[1-5]{1}[0-9a-f]{3}-[8-9a-b]{1}[0-9a-f]{3}-[0-9a-f]{12}"
+                },
+                "uri" : {
+                    "description" : "Model Primitive Datatype = AnyURI. An unambiguous reference to the CFSubject using a network-resolvable URI. ",
+                    "type" : "string",
+                    "format" : "uri"
+                },
+                "title" : {
+                    "description" : "Model Primitive Datatype = NormalizedString. The title of the CFSubject.",
+                    "type" : "string"
+                },
+                "hierarchyCode" : {
+                    "description" : "Model Primitive Datatype = NormalizedString. A human-referenceable code designated by the publisher to identify the item in the hierarchy of the subjects.",
+                    "type" : "string"
+                },
+                "description" : {
+                    "description" : "Model Primitive Datatype = String. A human readable description of the CFSubject.",
+                    "type" : "string"
+                },
+                "lastChangeDateTime" : {
+                    "description" : "Model Primitive Datatype = DateTime. A system generated timestamp of the most recent change to this record. This conforms to ISO 8601 dateTime definition [ISO 8601].",
+                    "type" : "string",
+                    "format" : "date-time"
+                }
+            },
+            "required" : [ "identifier","uri","title","hierarchyCode","lastChangeDateTime" ],
+            "additionalProperties" : false
+        },
+        "LinkGenURIDType" : {
+            "description" : "A container for the information that is used to achieve the link data reference.",
+            "type" : "object",
+            "properties" : {
+                "title" : {
+                    "description" : "Model Primitive Datatype = NormalizedString. A human readable title for the associated object.",
+                    "type" : "string"
+                },
+                "identifier" : {
+                    "description" : "Model Primitive Datatype = NormalizedString. An unambiguous, synthetic, globally unique identifier (this may or may not be a UUID) for the associated object.",
+                    "type" : "string"
+                },
+                "uri" : {
+                    "description" : "Model Primitive Datatype = AnyURI. A network-resolvable URI pointing to the authoritative reference for the associated object.",
+                    "type" : "string",
+                    "format" : "uri"
+                }
+            },
+            "required" : [ "title","identifier","uri" ],
+            "additionalProperties" : false
+        },
+        "LinkURIDType" : {
+            "description" : "A container for the information that is used to achieve the link data reference.",
+            "type" : "object",
+            "properties" : {
+                "title" : {
+                    "description" : "Model Primitive Datatype = NormalizedString. A human readable title for the associated object.",
+                    "type" : "string"
+                },
+                "identifier" : {
+                    "description" : "Model Primitive Datatype = NormalizedString. An unambiguous, synthetic, globally unique identifier (UUID) for the associated object.",
+                    "type" : "string",
+                    "pattern" : "[0-9a-f]{8}-[0-9a-f]{4}-[1-5]{1}[0-9a-f]{3}-[8-9a-b]{1}[0-9a-f]{3}-[0-9a-f]{12}"
+                },
+                "uri" : {
+                    "description" : "Model Primitive Datatype = AnyURI. A network-resolvable URI pointing to the authoritative reference for the associated object.",
+                    "type" : "string",
+                    "format" : "uri"
+                }
+            },
+            "required" : [ "title","identifier","uri" ],
+            "additionalProperties" : false
+        }
+    }
+}
