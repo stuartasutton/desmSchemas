@@ -1,1 +1,65 @@
-{"@context":"http://credreg.net/ctdl/schema/context/json","@graph":[{"@type":"skos:ConceptScheme","@id":"ceterms:ClaimType","rdfs:label":{"en-US":"Claim Type"},"rdfs:comment":{"en-US":"Types of the claims supported by a verification service."},"vs:term_status":"vs:stable","meta:changeHistory":"http://credreg.net/ctdl/termhistory/ceterms/ClaimType/json","meta:hasConcept":["claimType:BadgeClaim","claimType:QualityAssuranceClaim","claimType:TranscriptClaim","claimType:VerifiedClaim"],"skos:hasTopConcept":["claimType:BadgeClaim","claimType:QualityAssuranceClaim","claimType:TranscriptClaim","claimType:VerifiedClaim"]},{"@type":"skos:Concept","@id":"claimType:BadgeClaim","skos:prefLabel":{"en-US":"Badge Claim"},"skos:definition":{"en-US":"Verifiable visual representation that can be shared, embedded, linked, or otherwise used to publicly indicate that an individual has the represented credential."},"vs:term_status":"vs:stable","meta:changeHistory":"http://credreg.net/ctdl/termhistory/claimType/BadgeClaim/json","skos:inScheme":["ceterms:ClaimType"],"skos:topConceptOf":["ceterms:ClaimType"]},{"@type":"skos:Concept","@id":"claimType:QualityAssuranceClaim","skos:prefLabel":{"en-US":"Quality Assurance Claim"},"skos:definition":{"en-US":"Verifiable representation of quality assurance."},"vs:term_status":"vs:stable","meta:changeHistory":"http://credreg.net/ctdl/termhistory/claimType/QualityAssuranceClaim/json","skos:inScheme":["ceterms:ClaimType"],"skos:topConceptOf":["ceterms:ClaimType"]},{"@type":"skos:Concept","@id":"claimType:TranscriptClaim","skos:prefLabel":{"en-US":"Transcript Claim"},"skos:definition":{"en-US":"Verifiable representation of postsecondary courses and degrees completed."},"vs:term_status":"vs:stable","meta:changeHistory":"http://credreg.net/ctdl/termhistory/claimType/TranscriptClaim/json","skos:inScheme":["ceterms:ClaimType"],"skos:topConceptOf":["ceterms:ClaimType"]},{"@type":"skos:Concept","@id":"claimType:VerifiedClaim","skos:prefLabel":{"en-US":"Verified Claim"},"skos:definition":{"en-US":"Verifiable representation of the credential holder's credential."},"vs:term_status":"vs:stable","meta:changeHistory":"http://credreg.net/ctdl/termhistory/claimType/VerifiedClaim/json","skos:inScheme":["ceterms:ClaimType"],"skos:topConceptOf":["ceterms:ClaimType"]}]}
+{
+    "@context": "http://credreg.net/ctdl/schema/context/json",
+    "@graph": [
+        {
+            "@type": "skos:ConceptScheme",
+            "@id": "ceterms:ClaimType",
+            "rdfs:label": {"en-US": "Claim Type"},
+            "rdfs:comment": {"en-US": "Types of the claims supported by a verification service."},
+            "vs:term_status": "vs:stable",
+            "meta:changeHistory": "http://credreg.net/ctdl/termhistory/ceterms/ClaimType/json",
+            "meta:hasConcept": [
+                "claimType:BadgeClaim",
+                "claimType:QualityAssuranceClaim",
+                "claimType:TranscriptClaim",
+                "claimType:VerifiedClaim"
+            ],
+            "skos:hasTopConcept": [
+                "claimType:BadgeClaim",
+                "claimType:QualityAssuranceClaim",
+                "claimType:TranscriptClaim",
+                "claimType:VerifiedClaim"
+            ]
+        },
+        {
+            "@type": "skos:Concept",
+            "@id": "claimType:BadgeClaim",
+            "skos:prefLabel": {"en-US": "Badge Claim"},
+            "skos:definition": {"en-US": "Verifiable visual representation that can be shared, embedded, linked, or otherwise used to publicly indicate that an individual has the represented credential."},
+            "vs:term_status": "vs:stable",
+            "meta:changeHistory": "http://credreg.net/ctdl/termhistory/claimType/BadgeClaim/json",
+            "skos:inScheme": ["ceterms:ClaimType"],
+            "skos:topConceptOf": ["ceterms:ClaimType"]
+        },
+        {
+            "@type": "skos:Concept",
+            "@id": "claimType:QualityAssuranceClaim",
+            "skos:prefLabel": {"en-US": "Quality Assurance Claim"},
+            "skos:definition": {"en-US": "Verifiable representation of quality assurance."},
+            "vs:term_status": "vs:stable",
+            "meta:changeHistory": "http://credreg.net/ctdl/termhistory/claimType/QualityAssuranceClaim/json",
+            "skos:inScheme": ["ceterms:ClaimType"],
+            "skos:topConceptOf": ["ceterms:ClaimType"]
+        },
+        {
+            "@type": "skos:Concept",
+            "@id": "claimType:TranscriptClaim",
+            "skos:prefLabel": {"en-US": "Transcript Claim"},
+            "skos:definition": {"en-US": "Verifiable representation of postsecondary courses and degrees completed."},
+            "vs:term_status": "vs:stable",
+            "meta:changeHistory": "http://credreg.net/ctdl/termhistory/claimType/TranscriptClaim/json",
+            "skos:inScheme": ["ceterms:ClaimType"],
+            "skos:topConceptOf": ["ceterms:ClaimType"]
+        },
+        {
+            "@type": "skos:Concept",
+            "@id": "claimType:VerifiedClaim",
+            "skos:prefLabel": {"en-US": "Verified Claim"},
+            "skos:definition": {"en-US": "Verifiable representation of the credential holder's credential."},
+            "vs:term_status": "vs:stable",
+            "meta:changeHistory": "http://credreg.net/ctdl/termhistory/claimType/VerifiedClaim/json",
+            "skos:inScheme": ["ceterms:ClaimType"],
+            "skos:topConceptOf": ["ceterms:ClaimType"]
+        }
+    ]
+}
