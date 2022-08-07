@@ -1,6 +1,10 @@
 # Credential Engine, 1EdTech, PESC, HR Open Standards, Schema.org, CEDS Files for T3 DESM Testing
 
-The schema files needed for the T3 DESM mapping from Credential Engine, 1EdTech, PESC, HR Open Standards, Schema.org, UW/D2L
+During testing of the DESM tool, a consistent set of well-formed schemas from established  Data Standards Organizations (DSOs) including Credential Engine, HR Open Standards, PESC, CEDS, Credential Engine, Schema.org, ASN and 1TechEd.  Test data (schemas and concept schemes) for testing have been gathered together in GigHub. These test files cover the major forms that data needing to be ingested into the DESM tool will take including XML (XML Schema), CSV, JSON (JSON Schema), and RDF (RDF Schema) via its common serializations including RDF/XML, JSON-LD, RDF/JSON (resource-centric) and Turtle.
+
+This README documents the location of those well-formed schemas to be used in testing.  Some of the schemas are quite large including those of Schema.org, PESC, HR Open and Credential Engine, ASN, CEDS. The large size of these schemas is the result of their covering multiple classes in single files. While there are use cases where a large number of DSOs will be mapping a large number of classes, the more likely general use case for DESM will be crosswalking a limited number of DSO schemas describing a limited number of classes. Where the number of classes being crosswalked is small, large schemas in which they may be embedded may be right-sized, by extracting only the classes and associated properties needed for the crosswalking task prior to loading the abbreviated schema into the DESM instance. As a result, most schema loads will be relatively constrained in size. 
+
+The schema files needed for the T3 DESM mapping from Credential Engine, 1EdTech, PESC, HR Open Standards, Schema.org, UW/D2L are listed below along with URLs where the files have to be accessed outside the repo.
 
 ### CEDS—Common Education Data Standards
 The CEDS schema is published periodically in a large CSV file. Since any single use case of the DESM tool is unlikely to need even a fraction of this large CSV set, the file can be edited down to only the applicable data before uploading in the DESM tool.
