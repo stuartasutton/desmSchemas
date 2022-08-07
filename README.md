@@ -45,6 +45,8 @@ HR Standards is the largest (most complex) JSON data standard covering all of th
 
 There is Google sheet that identifies where the XSD files in this GitHub folder show up in teh description of select major classes (Course, Competency, Organization etc.): https://docs.google.com/spreadsheets/d/1yXQDO5m3GalqF_ylyYUvJo7DO47dXocVhj7JiedGVSM/edit#gid=457410372. The files in the Google sheet shaded blue and with the words "CodeList" in their names define concept schemes/enumerations.
 
+### Schema.org
+
 ### UW/D2L (ASN)
 
 The ASN schemas and concept schemes to use with the DESM tool are maintained in a separate github repo: [https://github.com/stuartasutton/asn](https://github.com/stuartasutton/asn)
