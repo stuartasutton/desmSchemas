@@ -46,6 +46,12 @@ HR Standards is the largest (most complex) JSON data standard covering all of th
 There is Google sheet that identifies where the XSD files in this GitHub folder show up in teh description of select major classes (Course, Competency, Organization etc.): https://docs.google.com/spreadsheets/d/1yXQDO5m3GalqF_ylyYUvJo7DO47dXocVhj7JiedGVSM/edit#gid=457410372. The files in the Google sheet shaded blue and with the words "CodeList" in their names define concept schemes/enumerations.
 
 ### Schema.org
+The Schema.org schema is very large. It is modeled in RDF and expressed in a number of serializations including JSON-LD, RDF/XML, Turtle, CSV, Triples and Quads. URL's to four of these serializations are listed below:
+
+* JSON-LD: https://schema.org/version/latest/schemaorg-current-https.jsonld
+* RDF/XML: https://schema.org/version/latest/schemaorg-current-https.rdf
+* Turtle: https://schema.org/version/latest/schemaorg-current-https.ttl
+* CSV: https://schema.org/version/latest/schemaorg-current-https-types.csv
 
 ### UW/D2L (ASN)
 
