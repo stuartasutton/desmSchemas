@@ -38,7 +38,7 @@ TCredential Engine maintains three namespace schemas—CTDL, CTDL-ASN and QData.
 The IMS Gloab (1EdTech) folder contains JSON schemas for a number of classes including Comprehensive Learner Record (CLR), Course, Organization, and CASE (competency frameworks). The CASE file comes in both JSON and JSON-LD.
 
 ### PESC—Postsecondary Electronic Standards Council
-There are two PESC schemas (XML Schema) for testing, Academic Record (Academic_Record_v_1.13.xsd) and Core Main (CoreMain_v_1.19.xsd). Each of these files two files reference the other.
+There are two PESC schemas (XML Schema) for testing, Academic Record (Academic_Record_v_1.13.xsd) and Core Main (CoreMain_v_1.19.xsd). Each of these files make references to the other.
 
 ### HR Open Standards
 HR Standards is the largest (most complex) JSON data standard covering all of the human resource domain. It's GitHub folder here contains a good deal of it, but certainly not all. The XSD files contain both classes and properties, but also enumerations and tagging files.
