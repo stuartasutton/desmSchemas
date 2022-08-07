@@ -27,7 +27,7 @@ TCredential Engine maintains three namespace schemas—CTDL, CTDL-ASN and QData.
       </ul></li>  
 </ul>
 
-**Note:** All three namespace schemas include all relevant concept schemes and concepts encoded using W3C's Simple Knowledge Organization System (SKOS); <u>however</u> each concept scheme is also published separately. The separately published concept schemes are available through the left-hand selection panel on each serialization homepage:  
+**Note:** All three namespace schemas include all relevant concept schemes and concepts encoded using W3C's Simple Knowledge Organization System (SKOS); <u>however</u> each concept scheme is also published separately. The separately published concept schemes are available through the left-hand selection panel on each namespace serialization homepage:  
 <ul>
    <li>CTDL, 26 concept schemes</li>
    <li>CTDL-ASN, 1 concept scheme</li>
