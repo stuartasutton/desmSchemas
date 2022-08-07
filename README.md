@@ -35,6 +35,7 @@ TCredential Engine maintains three namespace schemas—CTDL, CTDL-ASN and QData.
 </ul>
 
 ### 1EdTech (<em>previously IMS Global</em>)
+The IMS Gloab (1EdTech) folder contains JSON schemas for a number of classes including Comprehensive Learner Record (CLR), Course, Organization, and CASE (competency frameworks). The CASE file comes in both JSON and JSON-LD.
 
 ### PESC
 
