@@ -2,6 +2,10 @@
 
 The schema files needed for the T3 DESM mapping from Credential Engine, 1EdTech, PESC, HR Open Standards, Schema.org, UW/D2L
 
+### CEDS—Common Education Data Standards
+The CEDS schema is published periodically in a large CSV file. Since any single use case of the DESM tool is unlikely to need even a fraction of this large CSV set, the file can be edited down to only the applicable data before uploading in the DESM tool.
+* Version 9 CEDS CSV (Spreadsheet): https://github.com/stuartasutton/desmSchemas/blob/main/CEDS/CEDS-V9-with-Extend.xlsx
+
 ### Credential Engine
 TCredential Engine maintains three namespace schemas—CTDL, CTDL-ASN and QData. All three namespace schemas are in continuous continuous development and are not episodically published in versions. As a result, the three namespace and select concept schemes here in GitHub should be access for DESM upload from their source on the Credential Engine website. Each of the three namspaces comes in two flavors: (1) with meta tags, and (2) without meta tags. The "without meta tags" flavor is the most common form while the "with meta tags" is the most useful to downstream systems using the schemas. For DESM testing purposes, both flavors should be tested. The DESM's filtering should simply ignore the meta tags from the http://credreg.net/meta/terms/ namespace. 
 
@@ -30,7 +34,7 @@ TCredential Engine maintains three namespace schemas—CTDL, CTDL-ASN and QData.
    <li>QData, 6 concept schemes</li>
 </ul>
 
-### 1EdTech
+### 1EdTech (<em>previously IMS Global</em>)
 
 ### PESC
 
