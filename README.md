@@ -42,4 +42,4 @@ TCredential Engine maintains three namespace schemas—CTDL, CTDL-ASN and QData.
 
 ### UW/D2L (ASN)
 
-The ASN schemas and concept schemes are maintained in a separate github repo: [https://github.com/stuartasutton/asn](https://github.com/stuartasutton/asn)
+The ASN schemas and concept schemes to use with the DESM tool are maintained in a separate github repo: [https://github.com/stuartasutton/asn](https://github.com/stuartasutton/asn)
