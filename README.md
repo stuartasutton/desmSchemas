@@ -37,9 +37,11 @@ TCredential Engine maintains three namespace schemas—CTDL, CTDL-ASN and QData.
 ### 1EdTech (<em>previously IMS Global</em>)
 The IMS Gloab (1EdTech) folder contains JSON schemas for a number of classes including Comprehensive Learner Record (CLR), Course, Organization, and CASE (competency frameworks). The CASE file comes in both JSON and JSON-LD.
 
-### PESC
+### PESC—Postsecondary Electronic Standards Council
+There are two PESC schemas (XML Schema) for testing, Academic Record (Academic_Record_v_1.13.xsd) and Core Main (CpreMain_v_1.19.xsd).  
 
 ### HR Open Standards
+@@@
 
 ### UW/D2L (ASN)
 
