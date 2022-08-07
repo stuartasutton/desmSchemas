@@ -41,7 +41,9 @@ The IMS Gloab (1EdTech) folder contains JSON schemas for a number of classes inc
 There are two PESC schemas (XML Schema) for testing, Academic Record (Academic_Record_v_1.13.xsd) and Core Main (CoreMain_v_1.19.xsd). Each of these files two files reference the other.
 
 ### HR Open Standards
-HR Standards is the largest (most complex) JSON data standard. It's GitHub folder here contains a good deal of it, but certainly not all. 
+HR Standards is the largest (most complex) JSON data standard covering all of the human resource domain. It's GitHub folder here contains a good deal of it, but certainly not all. The XSD files contain both classes and properties, but also enumerations and tagging files.
+
+There is Google sheet that identifies where the XSD files in this GitHub folder show up in teh description of select major classes (Course, Competency, Organization etc.): https://docs.google.com/spreadsheets/d/1yXQDO5m3GalqF_ylyYUvJo7DO47dXocVhj7JiedGVSM/edit#gid=457410372. The files in the Google sheet shaded blue and with the words "CodeList" in their names define concept schemes/enumerations.
 
 ### UW/D2L (ASN)
 
