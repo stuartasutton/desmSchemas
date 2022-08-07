@@ -19,7 +19,7 @@ TCredential Engine maintains three namespace schemas—CTDL, CTDL-ASN and QData.
    <li>QData
       <ul>
          <li>With Meta Tags: https://credreg.net/qdata/schema/encoding/json</li>
-         <li>Without Meta Tags:</li>
+         <li>Without Meta Tags: https://credreg.net/qdata/schema/encoding/json?includemetaproperties=false</li>
       </ul></li>  
 </ul>
 
